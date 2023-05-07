@@ -55,7 +55,7 @@ class Homestead
       if settings.has_key?('paravirtprovider') && settings['paravirtprovider']
         vb.customize ['modifyvm', :id, '--paravirtprovider', settings['paravirtprovider'] ||= 'kvm']
       end
-      
+
       if Vagrant::Util::Platform.windows?
         vb.customize ["setextradata", :id, "VBoxInternal2/SharedFoldersEnableSymlinksCreate/v-root", "1"]
       end
@@ -107,7 +107,7 @@ class Homestead
       v.memory = settings['memory'] ||= 2048
       v.cpus = settings['cpus'] ||= 1
     end
-    
+
     # Configure libvirt settings
     config.vm.provider "libvirt" do |libvirt|
       libvirt.default_prefix = ''
@@ -563,7 +563,7 @@ class Homestead
       end
 
       config.vm.provision 'shell' do |s|
-        s.inline = 'service php5.6-fpm restart;service php7.0-fpm restart;service  php7.1-fpm restart; service php7.2-fpm restart; service php7.3-fpm restart; service php7.4-fpm restart; service php8.0-fpm restart; service php8.1-fpm restart; service php8.2-fpm restart;'
+        s.inline = 'service php8.0-fpm restart; service php8.2-fpm restart;'
       end
     end
 
