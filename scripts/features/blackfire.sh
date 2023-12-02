@@ -49,5 +49,5 @@ timeout=15s
 echo "$agent" > "/etc/blackfire/agent"
 echo "$client" > "/home/vagrant/.blackfire.ini"
 
-service php8.0-fpm restart
+service php8.1-fpm restart
 service blackfire-agent restart

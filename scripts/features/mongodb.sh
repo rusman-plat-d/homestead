@@ -46,27 +46,17 @@ sudo mv /tmp/mongo-php-driver /usr/src/mongo-php-driver
 cd /usr/src/mongo-php-driver
 git submodule -q update --init
 
-if [ -f /home/$WSL_USER_NAME/.homestead-features/php80 ]
+if [ -f /home/$WSL_USER_NAME/.homestead-features/php81 ]
 then
-    phpize8.0
-    ./configure --with-php-config=/usr/bin/php-config8.0 > /dev/null
+    phpize8.1
+    ./configure --with-php-config=/usr/bin/php-config8.1 > /dev/null
     make clean > /dev/null
     make >/dev/null 2>&1
     sudo make install
-    sudo bash -c "echo 'extension=mongodb.so' > /etc/php/8.0/mods-available/mongo.ini"
-    sudo ln -s /etc/php/8.0/mods-available/mongo.ini /etc/php/8.0/cli/conf.d/20-mongo.ini
-    sudo ln -s /etc/php/8.0/mods-available/mongo.ini /etc/php/8.0/fpm/conf.d/20-mongo.ini
-    sudo service php8.0-fpm restart
+    sudo bash -c "echo 'extension=mongodb.so' > /etc/php/8.1/mods-available/mongo.ini"
+    sudo ln -s /etc/php/8.1/mods-available/mongo.ini /etc/php/8.1/cli/conf.d/20-mongo.ini
+    sudo ln -s /etc/php/8.1/mods-available/mongo.ini /etc/php/8.1/fpm/conf.d/20-mongo.ini
+    sudo service php8.1-fpm restart
 fi
-
-phpize8.2
-./configure --with-php-config=/usr/bin/php-config8.2 > /dev/null
-make clean > /dev/null
-make >/dev/null 2>&1
-sudo make install
-sudo bash -c "echo 'extension=mongodb.so' > /etc/php/8.2/mods-available/mongo.ini"
-sudo ln -s /etc/php/8.2/mods-available/mongo.ini /etc/php/8.2/cli/conf.d/20-mongo.ini
-sudo ln -s /etc/php/8.2/mods-available/mongo.ini /etc/php/8.2/fpm/conf.d/20-mongo.ini
-sudo service php8.2-fpm restart
 
 mongosh admin --eval "db.createUser({user:'homestead',pwd:'secret',roles:['root']})"

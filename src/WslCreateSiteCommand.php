@@ -94,7 +94,7 @@ class WslCreateSiteCommand extends Command
                 $site['to'],            // $1
                 $site['port'] ?? 80,    // $2
                 $site['ssl'] ?? 443,    // $3
-                $site['php'] ?? '8.0',  // $4
+                $site['php'] ?? '8.1',  // $4
                 '',                     // $5 params
                 $site['xhgui'] ?? '',   // $6
                 $site['exec'] ?? false, // $7

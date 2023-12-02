@@ -40,4 +40,4 @@ sudo service couchdb restart
 
 sudo service nginx restart
 
-sudo service php8.0-fpm restart
+sudo service php8.1-fpm restart

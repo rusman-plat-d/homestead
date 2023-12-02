@@ -407,7 +407,7 @@ class Homestead
               site['to'],                 # $2
               site['port'] ||= http_port, # $3
               site['ssl'] ||= https_port, # $4
-              site['php'] ||= '8.2',      # $5
+              site['php'] ||= '8.1',      # $5
               params ||= '',              # $6
               site['xhgui'] ||= '',       # $7
               site['exec'] ||= 'false',   # $8
@@ -512,47 +512,7 @@ class Homestead
     if settings.has_key?('variables')
       settings['variables'].each do |var|
         config.vm.provision 'shell' do |s|
-          s.inline = "echo \"\nenv[$1] = '$2'\" >> /etc/php/5.6/fpm/pool.d/www.conf"
-          s.args = [var['key'], var['value']]
-        end
-
-        config.vm.provision 'shell' do |s|
-          s.inline = "echo \"\nenv[$1] = '$2'\" >> /etc/php/7.0/fpm/pool.d/www.conf"
-          s.args = [var['key'], var['value']]
-        end
-
-        config.vm.provision 'shell' do |s|
-          s.inline = "echo \"\nenv[$1] = '$2'\" >> /etc/php/7.1/fpm/pool.d/www.conf"
-          s.args = [var['key'], var['value']]
-        end
-
-        config.vm.provision 'shell' do |s|
-          s.inline = "echo \"\nenv[$1] = '$2'\" >> /etc/php/7.2/fpm/pool.d/www.conf"
-          s.args = [var['key'], var['value']]
-        end
-
-        config.vm.provision 'shell' do |s|
-          s.inline = "echo \"\nenv[$1] = '$2'\" >> /etc/php/7.3/fpm/pool.d/www.conf"
-          s.args = [var['key'], var['value']]
-        end
-
-        config.vm.provision 'shell' do |s|
-          s.inline = "echo \"\nenv[$1] = '$2'\" >> /etc/php/7.4/fpm/pool.d/www.conf"
-          s.args = [var['key'], var['value']]
-        end
-
-        config.vm.provision 'shell' do |s|
-          s.inline = "echo \"\nenv[$1] = '$2'\" >> /etc/php/8.0/fpm/pool.d/www.conf"
-          s.args = [var['key'], var['value']]
-        end
-
-        config.vm.provision 'shell' do |s|
           s.inline = "echo \"\nenv[$1] = '$2'\" >> /etc/php/8.1/fpm/pool.d/www.conf"
-          s.args = [var['key'], var['value']]
-        end
-
-        config.vm.provision 'shell' do |s|
-          s.inline = "echo \"\nenv[$1] = '$2'\" >> /etc/php/8.2/fpm/pool.d/www.conf"
           s.args = [var['key'], var['value']]
         end
 
@@ -563,7 +523,7 @@ class Homestead
       end
 
       config.vm.provision 'shell' do |s|
-        s.inline = 'service php8.0-fpm restart; service php8.2-fpm restart;'
+        s.inline = 'service php8.1-fpm restart;'
       end
     end
 
